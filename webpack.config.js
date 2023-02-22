@@ -5,7 +5,7 @@ const GlobEntries = require('webpack-glob-entries');
 
 module.exports = {
   mode: 'production',
-  entry: GlobEntries('./src/test/*test*.ts'), // Generates multiple entry for each test
+  entry: GlobEntries('./src/test/*.ts'), // Generates multiple entry for each test
   output: {
     path: path.join(__dirname, 'dist'),
     libraryTarget: 'commonjs',
@@ -30,17 +30,6 @@ module.exports = {
   stats: {
     colors: true,
   },
-  plugins: [
-    new CleanWebpackPlugin(),
-    // Copy assets to the destination folder
-    // see `src/post-file-test.ts` for an test example using an asset
-    new CopyPlugin({
-      patterns: [{ 
-        from: path.resolve(__dirname, 'assets'), 
-        noErrorOnMissing: true 
-      }],
-    }),
-  ],
   optimization: {
     // Don't minimize, as it's not used in the browser
     minimize: false,

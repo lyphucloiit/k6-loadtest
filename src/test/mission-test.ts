@@ -7,7 +7,7 @@ import { Mission } from '../function/mission';
 
 export let options: Options = {
   vus: 1,
-  duration: '1s'
+  duration: '10s'
 };
 
 export let missionId = "Login_Daily";
@@ -20,13 +20,13 @@ export function setup() {
 
 export default (jwt: string) => {
   GlobalCache.JWT = jwt;
-  group('checkout process 1', function () {
+  group('claim reward', function () {
     var res = Mission.ClaimRewards(missionId)
     AssertHelper.CheckSuccess(res);
   });
   
-  group('checkout process 2', function () {
-    var res = Mission.ClaimRewards(missionId)
+  group('get mission', function () {
+    var res = Mission.GetMission()
     AssertHelper.CheckSuccess(res);
   });
   
